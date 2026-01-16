@@ -1,11 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router";
 import Container from "../../components/Container/Container";
+import Logo from "@/components/Logo/Logo";
 
 const AuthLayout = () => {
   return (
     <div className="min-h-screen bg-gray-300">
       <Container>
+        <div>
+          <Logo />
+        </div>
         <div className="flex min-h-screen items-center justify-center py-10">
           <div className="grid w-full max-w-5xl grid-cols-1 gap-10 overflow-hidden rounded-2xl bg-base-100 shadow-2xl lg:grid-cols-2">
             {/* Left: Branding Section */}
