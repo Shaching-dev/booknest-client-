@@ -41,28 +41,36 @@ const Register = () => {
         {/* Content */}
         <CardContent className="space-y-4">
           <form onSubmit={handleSubmit(handleRegister)}>
+            <Label htmlFor="name">Your Name</Label>
+
             <Input
               {...register("name", { required: true })}
               type="text"
               placeholder="@your name"
+              className="my-3"
             />
 
             {errors.name?.type === "required" && (
               <p className="text-red-500">This field is required</p>
             )}
+            <Label htmlFor="email">Your email address</Label>
             <Input
               {...register("email", { required: true })}
               type="email"
               placeholder="Email address"
+              className="my-3"
             />
             {errors.email?.type === "required" && (
               <p className="text-red-500">This field is required</p>
             )}
             <div>
+              <Label htmlFor="password">Your Password</Label>
+
               <Input
                 {...register("password", { required: true })}
                 type="password"
                 placeholder="Password"
+                className="my-3"
               />
 
               {errors.password?.type === "required" && (

@@ -11,8 +11,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const handleLogin = (data) => {
+    console.log(data);
+  };
   return (
     <div className=" flex items-center justify-center rounded-2xl px-4">
       <Card className="w-full max-w-md shadow-xl">
@@ -28,8 +37,35 @@ const Login = () => {
 
         {/* Content */}
         <CardContent className="space-y-4">
-          <Input type="email" placeholder="Email address" />
-          <Input type="password" placeholder="Password" />
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <Label htmlFor="email">Your email address</Label>
+            <Input
+              {...register("email", { required: true })}
+              type="email"
+              placeholder="Email address"
+              className="my-3"
+            />
+            {errors.email?.type === "required" && (
+              <p className="text-red-500">This field is required</p>
+            )}
+            <div>
+              <Label htmlFor="password">Your Password</Label>
+
+              <Input
+                {...register("password", { required: true })}
+                type="password"
+                placeholder="Password"
+                className="my-3"
+              />
+
+              {errors.password?.type === "required" && (
+                <p className="text-red-500">This field is required</p>
+              )}
+            </div>
+            <Button className="w-full bg-primary text-primary-content hover:bg-primary/90">
+              Login
+            </Button>
+          </form>
         </CardContent>
 
         <a
@@ -40,10 +76,6 @@ const Login = () => {
 
         {/* Footer */}
         <CardFooter className="flex flex-col gap-3">
-          <Button className="w-full bg-primary text-primary-content hover:bg-primary/90">
-            Login
-          </Button>
-
           <p className="text-sm text-center text-muted-foreground">
             Don&apos;t have an account?{" "}
             <a href="/register" className="text-primary font-medium">
